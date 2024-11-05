@@ -1,0 +1,157 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вычисление Z = X*Y</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: rgb(32, 32, 33); 
+        }
+        header, nav, footer{
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            margin-right: 50px; 
+            text-decoration: none;
+            color: white;
+        }
+        
+        nav a:last-child {
+            margin-right: 0;
+        }
+
+        .form-container {
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            width: 50%;
+        }
+        label, input, button {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            background-color: white;
+            color: rgb(255, 0, 187);;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            margin-right: 10px;
+        }
+        .result {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        .back-to-top {
+            display: block;
+            margin: 20px;
+            padding: 10px 20px;
+            background-color: #ffffff;
+            color: rgb(255, 0, 187);
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 style="color: white; font-style: italic;">Вычисление Z = (X*Y)</h1>
+        <nav>
+          <a href="index.html" class="active">Главная</a>
+          <a href="series.html">Серийность</a>
+          <a href="passport.html">Паспорт</a>
+          <a href="javascript.html">Задача</a>
+          <a href="contacts.html">Информация</a>
+          <a href="review.html">Обратная связь</a>
+        </nav>
+    </header>
+
+<main>
+    <section class="form-container">
+        <h2>Вычисление Z = (X*Y)</h2>
+        <form id="calculationForm">
+
+            <label for="xValue" style="color: #ffffff;">Введите значение X:</label>
+            <input type="text" id="xValue" name="xValue" required><br>
+
+            <label for="yValue" style="color: #ffffff;">Введите значение Y:</label>
+            <input type="text" id="yValue" name="yValue" required><br>
+
+            <button type="button" id="calculateButton">Вычислить</button>
+            <button type="button" id="sendButton">Отправить</button>
+            <button type="button" id="clearButton">Очистить</button>
+        </form>
+
+        <div class="result" id="result" style="color: #ffffff;">Результат: </div>
+    </section>
+</main>
+
+<a href="index.html" class="back-to-top">К началу</a>
+
+<footer>
+    <p style="color: #ffffff; font-style: italic;">&copy; 2024 marmur</p>
+</footer>
+
+
+<script>
+    function calculateZ() {
+        let x = parseFloat(document.getElementById('xValue').value);
+        let y = parseFloat(document.getElementById('yValue').value);
+
+        if (x === 0 || y === 0) {
+            alert("Ошибка: X и Y не должны быть равны нулю!");
+            return;
+        }
+
+        if (isNaN(x) || isNaN(y)) {
+            alert("Ошибка: Введите корректные числовые значения для X и Y!");
+            return;
+        }
+
+        let z = 1 / (x * y);
+        document.getElementById('result').innerText = `Результат: Z = ${z}`;
+    }
+
+    function sendToBing() {
+        let x = parseFloat(document.getElementById('xValue').value);
+        let y = parseFloat(document.getElementById('yValue').value);
+
+        if (x === 0 || y === 0 || isNaN(x) || isNaN(y)) {
+            alert("Ошибка: Убедитесь, что X и Y корректны и не равны нулю.");
+            return;
+        }
+
+        let z = 1 / (x * y);
+        let query = `https://www.bing.com/search?q=Задача: Определить значение Z=(X*Y), где X=${x}, Y=${y}, Z=${z}`;
+        window.open(query, '_blank');
+    }
+
+    function clearFields() {
+        document.getElementById('xValue').value = '';
+        document.getElementById('yValue').value = '';
+        document.getElementById('result').innerText = 'Результат: ';
+    }
+
+    document.getElementById('calculateButton').addEventListener('click', calculateZ);
+    document.getElementById('sendButton').addEventListener('click', sendToBing);
+    document.getElementById('clearButton').addEventListener('click', clearFields);
+</script>
+
+</body>
+</html>
